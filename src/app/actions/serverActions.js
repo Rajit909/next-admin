@@ -26,3 +26,27 @@ export const deleteSnippet = async (id) => {
     revalidatePath("/");
     redirect("/")
 }
+
+
+
+const createSnnipet = async (message, formData) => {
+    const title = formData.get('title');
+    const code = formData.get('code');
+
+    if(typeof title !== "string" || !code) {
+        return {message: "Title and code are required"}
+    }
+
+    // Add required fields for Prisma model
+    const snippet = await prisma.snnipet.create({
+      data: {
+        title,
+        code,
+        status: 1, 
+        modified_by: 1, 
+        fininacial_year_id: 1
+      },
+    });
+    console.log("snippet", snippet);
+    redirect('/');
+  };

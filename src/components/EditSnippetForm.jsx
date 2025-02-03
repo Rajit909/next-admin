@@ -5,7 +5,7 @@ import React, { useState } from 'react'
 import { Button } from './ui/button';
 import {Snippet} from "@prisma/client"
 
-const EditSnippetForm =  ({snippet: Snippet}) => {
+const EditSnippetForm =  ({snippet}) => {
   console.log(snippet.code)
   const [code, setCode ] = useState(snippet.code);
   console.log("code", code)
@@ -13,7 +13,7 @@ const EditSnippetForm =  ({snippet: Snippet}) => {
     setCode(value)
   }
 
-  const saveSnippetAction = saveSnippet.bind(null, snippet.id, snippet.code)
+  const saveSnippetAction = saveSnippet.bind(null, snippet.id, code)
   return (
     <>
     <div className='flex flex-col gap-4'>
@@ -26,7 +26,7 @@ const EditSnippetForm =  ({snippet: Snippet}) => {
         theme='vs-dark'
         defaultLanguage="javascript"
         defaultValue={snippet.code}
-        onMount={changeEventHandler}
+        onChange={changeEventHandler}
       />
     </div>
     </>

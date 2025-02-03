@@ -3,28 +3,11 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { prisma } from '@/lib/prisma';
 import { redirect } from 'next/dist/server/api-utils';
-import React from 'react';
+import React, { useActionState } from 'react';
 
 const CreateSnippetPage = () => {
-  const createSnnipet = async (formData) => {
-    'use server';
-    const title = formData.get('title');
-    const code = formData.get('code');
-
-    // Add required fields for Prisma model
-    const snippet = await prisma.snnipet.create({
-      data: {
-        title,
-        code,
-        status: 1, 
-        modified_by: 1, 
-        fininacial_year_id: 1
-      },
-    });
-
-    console.log('Snippet created successfully:', snippet);
-    redirect(200, '/');
-  };
+  const [] = useActionState();
+  
 
   return (
     <>
